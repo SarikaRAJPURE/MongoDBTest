@@ -55,7 +55,7 @@ app.post('/createFruit', async (req, res) => {
     if(returnedValue){
         console.log("Upload Complete");
     }
-    res.status(400);
+    //res.status(400);
     res.send(returnedValue);
    /* myFruit.create( {
         name:"Apple",
@@ -95,6 +95,21 @@ app.post('/createVegie', async (req, res) => {
     
    
 })
+
+app.delete('/deleteNamelessData',async (req,res)=>{
+   let response = await myFruit.deleteMany({name:""});
+   console.log(response);
+   res.send({data : `deleted ${response.deletedCount} items!`});
+});
+
+app.get('/getFoodData',async (req, res) => {
+    //GET DATA FROM MONGODB 
+    let response = await myFruit.find({});
+    console.log(response);
+    //send it back to database
+    res.json(response);
+
+} )
 
 app.get('/getData', (req, res) => {
     //GET DATA FROM MONGODB

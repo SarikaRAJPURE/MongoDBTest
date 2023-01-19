@@ -28,7 +28,7 @@ submitButton.addEventListener('click', async () => {
     //we have to have our express.Json() here, so that we can accept stringified Json 
     //and be able to convert it back into an actual object.
     //And we also need this URL encoded.
-    let response = fetch('http://localhost:5000/createFruit', {
+    let response =await fetch('http://localhost:5000/createFruit', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -49,3 +49,19 @@ submitButton.addEventListener('click', async () => {
         console.log("Upload failed!");
      }
 })
+
+let deleteButton = document.getElementById('delete');
+
+deleteButton.addEventListener('click',async ()=>{
+  let response = await fetch(`http://localhost:5000/deleteNamelessData`,{
+    method : "DELETE"
+  });
+ // console.log(response);
+ let parsedData = await response.json();
+ console.log(parsedData);
+})
+
+let displayPageButton = document.getElementById('dispaly-page-btn');
+displayPageButton.addEventListener('click',()=>{
+    window.location.href = "./displayFood";
+});

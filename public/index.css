@@ -7,3 +7,18 @@
 .input-container{
     margin: 12px;
 }
+
+#nav-bar{
+    display: flex;
+    justify-content: space-around;
+}
+#nav-bar h1{
+     background-color: lightcyan;
+     padding: 20px;
+}
+
+/* 
+#title{
+   margin-left: auto;
+   
+} */
