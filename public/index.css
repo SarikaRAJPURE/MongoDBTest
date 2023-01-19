@@ -14,11 +14,22 @@
 }
 #nav-bar h1{
      background-color: lightcyan;
-     padding: 20px;
+     padding: 10px;
 }
+section{
+    margin: 12px;
+    padding: 20px;
+    background-color: lightgray;
+}
+ 
+#page-title{
+   text-align: center;  
+} 
 
-/* 
-#title{
-   margin-left: auto;
-   
+/* button{
+    width: 100px;
 } */
+
+body{
+    background-color:darkseagreen;
+}

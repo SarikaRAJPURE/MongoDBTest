@@ -111,6 +111,15 @@ app.get('/getFoodData',async (req, res) => {
 
 } )
 
+app.get('/getVegieData',async (req, res) => {
+    //GET DATA FROM MONGODB 
+    let response = await myVegie.find({});
+    console.log(response);
+    //send it back to database
+    res.json(response);
+
+} )
+
 app.get('/getData', (req, res) => {
     //GET DATA FROM MONGODB
     //res.json(data)
