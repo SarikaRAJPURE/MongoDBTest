@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,32 @@
     <script src="./index.js" defer></script>
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Home Page</h1>
-    <button id="submit-button">Send request for data</button>
+    <h1>Fruits Page</h1>
+    <div id="container">
+        <p id="upload-status"></p>
+        <div class="input-container">
+            <label for="name-input">Fruit Name : </label>
+            <input type="text" id="name-input">
+        </div>
+        <div class="input-container">
+            <label for="color-input">Fruit Color : </label>
+            <input type="text" id="color-input">
+        </div>
+        <div class="input-container">
+            <label for="age-input">Fruit Age : </label>
+            <input type="text" id="age-input">
+        </div>
+        <div class="input-container">
+            <label for="age-input">ReadytoEat : </label>
+            <select name="readytoeat-input" id="readytoeat-input">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <button id="submit-button">Create Fruit</button>
+    </div>
 </body>
+
 </html>
