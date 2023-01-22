@@ -117,30 +117,28 @@ app.get('/veggies', async (req, res) => {
     res.json(response);
 
 })
-
-app.get('/veggie/:veggieName', async (req, res) => {
+//app.get('/veggie/:veggieName', async (req, res) => {
+app.get('/search/:itemName', async (req, res) => {
     //GET DATA FROM MONGODB 
-    findVeggie = req.params.veggieName;
-    console.log(findVeggie);
+    findItem = req.params.itemName;
+    console.log(findItem);
     //To check case insensitive data
     
     //var regexveggie = new RegExp(["^", findVeggie, "$"].join(""), "i");
-    var regexveggie = new RegExp(["^", findVeggie, "$"].join(""), "i");
-    str = "/" + findVeggie+"/"+ "i";
-    //new RegExp(["^", findVeggie, "$"].join(""), "i");
-    console.log(str);
-    console.log(regexveggie);
+    var regexitem = new RegExp(["^", findItem, "$"].join(""), "i");
+    console.log(regexitem);
     //let response = await myVegie.find({ name: regexveggie});    
-    let response = await myVegie.find({ name:  regexveggie});
-
-    //.getters=false
-    //{ '$regex':/^John$/i}{ '$regex':regexveggie} 
-    //console.log(response);
+    let veggieresponse = await myVegie.find({ name:  regexitem});
+    let fruitresponse = await myFruit.find({ name: regexitem });
+     //console.log(response);
     //send it back to database
-    if (response.length) {
-        res.json(response);
+    if (fruitresponse.length) {
+        res.json(fruitresponse);
 
-    } else {
+    } else if(veggieresponse.length){
+        res.json(veggieresponse);
+    }  
+    else {
         res.send({ data: "No items in database " });
         //Item you are looking for is not available right now
     }

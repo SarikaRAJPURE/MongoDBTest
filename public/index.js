@@ -11,15 +11,19 @@ searchButton.addEventListener('click', async () => {
         containerelem.textContent = "Please Enter Fruit/Veggie you are looking for"
     } else {
         try {
-            let vegiedata = await fetch(`http://localhost:5000/veggie/${userItem}`);
-            let parsedvegieData = await vegiedata.json();
-            console.log(parsedvegieData);
-            console.log(parsedvegieData[0].name);
+            let itemData = await fetch(`http://localhost:5000/search/${userItem}`);
+            let parsedData = await itemData.json();
+            console.log(parsedData);
+            console.log(parsedData[0].name);
             /*  expression = "/" + userItem +"/"+ "i";
              matchStr = regexp(userItem,expression,'match');
              console.log(matchStr); */
-            /* if (userItem === parsedvegieData[0].name) { */
-            containerelem.innerHTML = `<p>The ${parsedvegieData[0].name} is available.</p><p>Name:${parsedvegieData[0].name}</p><p>Color:${parsedvegieData[0].color}</p><p>Days old:${parsedvegieData[0].age}</p><button>Buy</button>`;
+            /* if (userItem === parsedData[0].name) { */
+            containerelem.innerHTML = `<p>The ${parsedData[0].name} is available.</p>
+            <p>Name:${parsedData[0].name}</p>
+            <p>Color:${parsedData[0].color}</p>
+            <p>Days old:${parsedData[0].age}</p>
+            <button>Buy</button>`;
             //} else {
             //containerelem.textContent = "Item you are looking for is not available right now";
             //}
