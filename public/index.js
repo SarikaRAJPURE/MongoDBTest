@@ -36,7 +36,7 @@ deleteButton.addEventListener('click', async () => {
 })
 let homeButton = document.getElementById('home');
 homeButton.addEventListener('click', () => {
-    window.location.href = "/displayVeggie";
+    window.location.href = "/";
 });
 
 let createFruitButton = document.getElementById('create-fruit-btn');

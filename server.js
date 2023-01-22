@@ -123,12 +123,12 @@ app.get('/veggie/:veggieName', async (req, res) => {
     findVeggie = req.params.veggieName;
     console.log(findVeggie);
     //To check case insensitive data
-    var regexveggie = new RegExp("^" + findVeggie.toLowerCase(), "i")
-    str = "/" + findVeggie.toLowerCase()+"/"+ "i";
+    var regexveggie = new RegExp(["^", findVeggie, "$"].join(""), "i");
+    str = "/" + findVeggie+"/"+ "i";
     //new RegExp(["^", findVeggie, "$"].join(""), "i");
     console.log(str);
     //let response = await myVegie.find({ name: regexveggie});    
-    let response = await myVegie.find({ name:  findVeggie});
+    let response = await myVegie.find({ name:  regexveggie});
 
     //.getters=false
     //{ '$regex':/^John$/i}{ '$regex':regexveggie} 
