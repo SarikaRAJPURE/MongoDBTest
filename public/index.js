@@ -10,17 +10,24 @@ searchButton.addEventListener('click', async () => {
     if (userItem === "") {
         containerelem.textContent = "Please Enter Fruit/Veggie you are looking for"
     } else {
-        let vegiedata = await fetch(`http://localhost:5000/veggie/${userItem}`);
-        let parsedvegieData = await vegiedata.json();
-        console.log(parsedvegieData);
-        console.log(parsedvegieData[0].name);
-
-        if (userItem === parsedvegieData[0].name) {
-            containerelem.innerHTML = `<p>The Veggie you are looking for is available.</p><p>Name:${parsedvegieData[0].name}</p><p>Color:${parsedvegieData[0].color}</p><p>Days old:${parsedvegieData[0].age}</p><button>Buy</button>`;
-        } else {
-            containerelem.textContent = "Item you are looking for is not available right now";
+        try {
+            let vegiedata = await fetch(`http://localhost:5000/veggie/${userItem}`);
+            let parsedvegieData = await vegiedata.json();
+            console.log(parsedvegieData);
+            console.log(parsedvegieData[0].name);
+            /*  expression = "/" + userItem +"/"+ "i";
+             matchStr = regexp(userItem,expression,'match');
+             console.log(matchStr); */
+            /* if (userItem === parsedvegieData[0].name) { */
+            containerelem.innerHTML = `<p>The ${parsedvegieData[0].name} is available.</p><p>Name:${parsedvegieData[0].name}</p><p>Color:${parsedvegieData[0].color}</p><p>Days old:${parsedvegieData[0].age}</p><button>Buy</button>`;
+            //} else {
+            //containerelem.textContent = "Item you are looking for is not available right now";
+            //}
         }
-    }
+        catch(err){
+            containerelem.textContent = "Sorry, Item you are looking for is not available right now";
+        }
+}
 });
 
 
