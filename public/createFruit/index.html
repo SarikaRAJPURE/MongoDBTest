@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <script src="./index.js" defer></script>
+    <title>Fruits Page</title>
+</head>
+
+<body>
+
+    <h1 id="page-title">Organic & Natural Produce Store</h1>
+    <nav id="nav-bar">
+        <h1 id="home">Home</h1>
+        <h1 id="create-fruit-btn">Create Fruit</h1>
+        <h1 id="create-veggie-btn">Create Veggie</h1>
+        <h1 id="dispaly-food-btn">Display Food</h1>
+        <h1 id="dispaly-veggie-btn">Veggies</h1>
+        <h1 id="delete">Delete Bad Data</h1>
+    </nav>
+    <div class="main">
+        <div id="container">
+            <h1>Add new fruit</h1>
+            <p id="fruit-upload-status"></p>
+            <fieldset>                
+                <div class="input-container">
+                    <label for="name-input">Fruit Name : </label>
+                    <input type="text" id="name-input">
+                </div>
+                <div class="input-container">
+                    <label for="color-input">Fruit Color : </label>
+                    <input type="text" id="color-input">
+                </div>
+                <div class="input-container">
+                    <label for="age-input">Fruit Age : </label>
+                    <input type="text" id="age-input">
+                </div>
+                <div class="input-container">
+                    <label for="age-input">ReadytoEat : </label>
+                    <select name="readytoeat-input" id="readytoeat-input">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <button id="submit-fruit">Create Fruit</button>
+            </fieldset>
+        </div>
+    </div>
+</body>
+
+</html>

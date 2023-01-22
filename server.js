@@ -6,13 +6,13 @@ require('dotenv').config();
 const myFruit = require('./models/fruit');
 const myVegie = require('./models/vegie');
 
-mongoose.set('strictQuery',false);
+mongoose.set('strictQuery', false);
 
 const app = express();
 
 app.use(express.json());//that will allow us to accept that javascript object, notation data
 //console.log(myFruit);
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
@@ -41,7 +41,7 @@ mongoose.connection.once('open', () => {
 app.post('/createFruit', async (req, res) => {
     console.log(req.body);
 
-    const {nameString:name,colorString:color,ageNumber:age,readytoeatBool:readytoeat}= req.body;
+    const { nameString: name, colorString: color, ageNumber: age, readytoeatBool: readytoeat } = req.body;
 
     //console.log("running create route");
     console.log("uploading to database...");
@@ -52,33 +52,33 @@ app.post('/createFruit', async (req, res) => {
         readytoeat
     });
     console.log(returnedValue);
-    if(returnedValue){
+    if (returnedValue) {
         console.log("Upload Complete");
     }
     //res.status(400);
     res.send(returnedValue);
-   /* myFruit.create( {
-        name:"Apple",
-        color:"Red",
-        age:2,
-        readytoeat:true
-    } {
-        /* name:req.body.nameString,
-        color: req.body.colorString,
-        age:req.body.ageNumber,
-        readytoeat:req.body.readytoiputBool 
-        name,
-        color,
-        age,
-        readytoeat
-    });*/
-    
-    
+    /* myFruit.create( {
+         name:"Apple",
+         color:"Red",
+         age:2,
+         readytoeat:true
+     } {
+         /* name:req.body.nameString,
+         color: req.body.colorString,
+         age:req.body.ageNumber,
+         readytoeat:req.body.readytoiputBool 
+         name,
+         color,
+         age,
+         readytoeat
+     });*/
+
+
 })
 
-app.post('/createVegie', async (req, res) => {
+app.post('/create_veggie', async (req, res) => {
     console.log(req.body);
-    const {nameString:name,colorString:color,ageNumber:age,readytoeatBool:readytoeat}= req.body;
+    const { nameString: name, colorString: color, ageNumber: age, readytoeatBool: readytoeat } = req.body;
     console.log("uploading to database...");
     let returnedValue = await myVegie.create({
         name,
@@ -87,39 +87,63 @@ app.post('/createVegie', async (req, res) => {
         readytoeat
     });
     console.log(returnedValue);
-    if(returnedValue){
+    if (returnedValue) {
         console.log("Upload Complete");
     }
-    
     res.send(returnedValue);
-    
-   
+
 })
 
-app.delete('/deleteNamelessData',async (req,res)=>{
-   let response = await myFruit.deleteMany({name:""});
-   console.log(response);
-   res.send({data : `deleted ${response.deletedCount} items!`});
+app.delete('/deleteNamelessData', async (req, res) => {
+    let response = await myFruit.deleteMany({ name: "" });
+    console.log(response);
+    res.send({ data: `deleted ${response.deletedCount} items!` });
 });
 
-app.get('/getFoodData',async (req, res) => {
+app.get('/getFoodData', async (req, res) => {
     //GET DATA FROM MONGODB 
     let response = await myFruit.find({});
     console.log(response);
     //send it back to database
     res.json(response);
 
-} )
+})
 
-app.get('/getVegieData',async (req, res) => {
+app.get('/veggies', async (req, res) => {
     //GET DATA FROM MONGODB 
     let response = await myVegie.find({});
     console.log(response);
     //send it back to database
     res.json(response);
 
-} )
+})
 
+app.get('/veggie/:veggieName', async (req, res) => {
+    //GET DATA FROM MONGODB 
+    findVeggie = req.params.veggieName;
+    console.log(findVeggie);
+    //To check case insensitive data
+    var regexveggie = new RegExp("^" + findVeggie.toLowerCase(), "i")
+    str = "/" + findVeggie.toLowerCase()+"/"+ "i";
+    //new RegExp(["^", findVeggie, "$"].join(""), "i");
+    console.log(str);
+    //let response = await myVegie.find({ name: regexveggie});    
+    let response = await myVegie.find({ name:  findVeggie});
+
+    //.getters=false
+    //{ '$regex':/^John$/i}{ '$regex':regexveggie} 
+    //console.log(response);
+    //send it back to database
+    if (response.length) {
+        res.json(response);
+
+    } else {
+        res.send({ data: "No items in database " });
+        //Item you are looking for is not available right now
+    }
+    console.log(response);
+
+});
 app.get('/getData', (req, res) => {
     //GET DATA FROM MONGODB
     //res.json(data)

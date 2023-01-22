@@ -12,31 +12,25 @@
     text-align: center;  
  } 
 
-#food-container{
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    margin: 20px;
-    max-width: 700px;
-}
-
-#fruitsdata-container,#veggiedata-container{
+#veggiedata-container{
     background-color: lightcyan;
     border: 5px solid darkcyan;
     width: 200px;
     text-align: center;
     border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
 }
 
 body{
     background-color: darkseagreen;;
 }
 
-#container{
+.container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#note{
+    margin: 10px;
 }
